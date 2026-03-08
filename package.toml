@@ -1,0 +1,12 @@
+name = "yummy-intellij-plugin"
+version = "0.1.0"
+groupId = "com.ympkg"
+target = "17"
+sourceDir = "src/main/java"
+
+[compiler]
+libs = ["sdk/lib"]
+
+[scripts]
+setup = "bash scripts/setup-sdk.sh"
+package = "bash scripts/package-plugin.sh"

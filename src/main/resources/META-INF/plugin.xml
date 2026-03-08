@@ -1,0 +1,55 @@
+<idea-plugin>
+    <id>com.ympkg.idea</id>
+    <name>Yummy</name>
+    <vendor email="ympkg@users.noreply.github.com" url="https://github.com/ympkg/yummy">ympkg</vendor>
+
+    <description><![CDATA[
+    IntelliJ IDEA integration for the Yummy (ym) Java build tool.
+    <ul>
+      <li>Auto-detect package.toml and configure project</li>
+      <li>Auto-refresh on dependency changes (FileWatcher)</li>
+      <li>Run ym/ymc commands from IDE</li>
+      <li>Run Configurations for ymc dev/build/test</li>
+    </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Detect package.toml as project indicator -->
+        <directoryProjectConfigurator
+                implementation="com.ympkg.idea.YummyProjectConfigurator"
+                order="after PlatformProjectConfigurator"/>
+
+        <!-- File watcher for package.toml changes -->
+        <editorNotificationProvider
+                implementation="com.ympkg.idea.YummyNotificationProvider"/>
+
+        <!-- Tool window for ym commands -->
+        <toolWindow id="Yummy"
+                    anchor="bottom"
+                    factoryClass="com.ympkg.idea.YummyToolWindowFactory"
+                    icon="/icons/ym.svg"/>
+
+        <!-- Run configuration -->
+        <configurationType
+                implementation="com.ympkg.idea.run.YummyConfigurationType"/>
+        <runConfigurationProducer
+                implementation="com.ympkg.idea.run.YummyRunConfigurationProducer"/>
+    </extensions>
+
+    <actions>
+        <group id="Yummy.Actions" text="Yummy" description="Yummy build tool actions">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="Yummy.Build" class="com.ympkg.idea.actions.BuildAction"
+                    text="Build" description="Run ymc build"/>
+            <action id="Yummy.Dev" class="com.ympkg.idea.actions.DevAction"
+                    text="Dev" description="Run ymc dev"/>
+            <action id="Yummy.Test" class="com.ympkg.idea.actions.TestAction"
+                    text="Test" description="Run ymc test"/>
+            <action id="Yummy.Refresh" class="com.ympkg.idea.actions.RefreshAction"
+                    text="Refresh Project" description="Re-run ymc idea to sync dependencies"/>
+        </group>
+    </actions>
+</idea-plugin>

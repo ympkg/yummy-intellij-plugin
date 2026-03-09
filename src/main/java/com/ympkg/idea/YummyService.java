@@ -13,7 +13,7 @@ import com.intellij.openapi.vfs.VirtualFileManager;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Central service for running ym/ymc commands within the IDE.
+ * Central service for running ym commands within the IDE.
  */
 @Service(Service.Level.PROJECT)
 public final class YummyService {
@@ -29,23 +29,23 @@ public final class YummyService {
         return project.getService(YummyService.class);
     }
 
-    public void runYmcIdea() {
-        runCommand("ymc", new String[]{"idea"}, "Yummy: Generating IDEA project files...");
+    public void runIdea() {
+        runCommand("ym", new String[]{"idea"}, "Yummy: Generating IDEA project files...");
     }
 
-    public void runYmcBuild() {
-        runCommand("ymc", new String[]{"build"}, "Yummy: Building...");
+    public void runBuild() {
+        runCommand("ym", new String[]{"build"}, "Yummy: Building...");
     }
 
-    public void runYmcDev() {
-        runCommand("ymc", new String[]{"dev"}, "Yummy: Starting dev mode...");
+    public void runDev() {
+        runCommand("ym", new String[]{"dev"}, "Yummy: Starting dev mode...");
     }
 
-    public void runYmcTest() {
-        runCommand("ymc", new String[]{"test"}, "Yummy: Running tests...");
+    public void runTest() {
+        runCommand("ym", new String[]{"test"}, "Yummy: Running tests...");
     }
 
-    public void runYmAdd(String dep) {
+    public void runAdd(String dep) {
         runCommand("ym", new String[]{"add", dep}, "Yummy: Adding " + dep + "...");
     }
 

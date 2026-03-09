@@ -4,3 +4,5 @@ out/
 dist/
 sdk/
 .ym/
+*.zip
+*.tar.gz

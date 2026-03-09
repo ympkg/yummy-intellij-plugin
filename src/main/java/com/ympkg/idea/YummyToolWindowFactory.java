@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Tool window providing quick access to ym/ymc commands.
+ * Tool window providing quick access to ym commands.
  */
 public class YummyToolWindowFactory implements ToolWindowFactory, DumbAware {
 
@@ -23,16 +23,16 @@ public class YummyToolWindowFactory implements ToolWindowFactory, DumbAware {
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 
         JButton buildBtn = new JButton("Build");
-        buildBtn.addActionListener(e -> YummyService.getInstance(project).runYmcBuild());
+        buildBtn.addActionListener(e -> YummyService.getInstance(project).runBuild());
 
         JButton devBtn = new JButton("Dev");
-        devBtn.addActionListener(e -> YummyService.getInstance(project).runYmcDev());
+        devBtn.addActionListener(e -> YummyService.getInstance(project).runDev());
 
         JButton testBtn = new JButton("Test");
-        testBtn.addActionListener(e -> YummyService.getInstance(project).runYmcTest());
+        testBtn.addActionListener(e -> YummyService.getInstance(project).runTest());
 
         JButton refreshBtn = new JButton("Refresh");
-        refreshBtn.addActionListener(e -> YummyService.getInstance(project).runYmcIdea());
+        refreshBtn.addActionListener(e -> YummyService.getInstance(project).runIdea());
 
         buttonPanel.add(buildBtn);
         buttonPanel.add(devBtn);

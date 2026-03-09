@@ -10,7 +10,7 @@ public class RefreshAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         Project project = e.getProject();
         if (project != null) {
-            YummyService.getInstance(project).runYmcIdea();
+            YummyService.getInstance(project).runIdea();
         }
     }
 }

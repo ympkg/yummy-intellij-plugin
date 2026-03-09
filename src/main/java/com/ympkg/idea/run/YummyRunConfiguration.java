@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Run configuration for executing ymc commands.
+ * Run configuration for executing ym commands.
  */
 public class YummyRunConfiguration extends RunConfigurationBase<RunProfileState> {
 
@@ -36,7 +36,7 @@ public class YummyRunConfiguration extends RunConfigurationBase<RunProfileState>
                         args.add(arg);
                     }
                 }
-                GeneralCommandLine commandLine = new GeneralCommandLine("ymc")
+                GeneralCommandLine commandLine = new GeneralCommandLine("ym")
                         .withParameters(args)
                         .withWorkDirectory(getProject().getBasePath())
                         .withCharset(java.nio.charset.StandardCharsets.UTF_8);

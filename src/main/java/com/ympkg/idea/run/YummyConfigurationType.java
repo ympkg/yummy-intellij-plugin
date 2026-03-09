@@ -14,7 +14,7 @@ public class YummyConfigurationType implements ConfigurationType {
     public String getDisplayName() { return "Yummy"; }
 
     @Override
-    public String getConfigurationTypeDescription() { return "Run ymc commands"; }
+    public String getConfigurationTypeDescription() { return "Run ym commands"; }
 
     @Override
     public Icon getIcon() { return AllIcons.RunConfigurations.Application; }
@@ -39,6 +39,6 @@ class YummyConfigurationFactory extends ConfigurationFactory {
 
     @Override
     public RunConfiguration createTemplateConfiguration(Project project) {
-        return new YummyRunConfiguration(project, this, "ymc build");
+        return new YummyRunConfiguration(project, this, "ym build");
     }
 }

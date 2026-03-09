@@ -10,7 +10,7 @@ public class TestAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         Project project = e.getProject();
         if (project != null) {
-            YummyService.getInstance(project).runYmcTest();
+            YummyService.getInstance(project).runTest();
         }
     }
 }

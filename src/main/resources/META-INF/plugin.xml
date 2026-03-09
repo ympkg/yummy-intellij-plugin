@@ -6,25 +6,20 @@
     <description><![CDATA[
     IntelliJ IDEA integration for the Yummy (ym) Java build tool.
     <ul>
-      <li>Auto-detect package.toml and configure project</li>
-      <li>Auto-refresh on dependency changes (FileWatcher)</li>
-      <li>Run ym/ymc commands from IDE</li>
-      <li>Run Configurations for ymc dev/build/test</li>
+      <li>External System integration: auto-detect package.toml and sync project model</li>
+      <li>"Load Yummy Changes" notification on package.toml edits</li>
+      <li>Run ym commands from IDE (Build/Dev/Test/Clean)</li>
+      <li>Run Configurations for ym dev/build/test</li>
     </ul>
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.externalSystem</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Detect package.toml as project indicator -->
-        <directoryProjectConfigurator
-                implementation="com.ympkg.idea.YummyProjectConfigurator"
-                order="after PlatformProjectConfigurator"/>
-
-        <!-- File watcher for package.toml changes -->
-        <editorNotificationProvider
-                implementation="com.ympkg.idea.YummyNotificationProvider"/>
+        <!-- External System integration (replaces directoryProjectConfigurator + editorNotificationProvider) -->
+        <externalSystemManager
+                implementation="com.ympkg.idea.YummyExternalSystemManager"/>
 
         <!-- Tool window for ym commands -->
         <toolWindow id="Yummy"
@@ -43,13 +38,13 @@
         <group id="Yummy.Actions" text="Yummy" description="Yummy build tool actions">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <action id="Yummy.Build" class="com.ympkg.idea.actions.BuildAction"
-                    text="Build" description="Run ymc build"/>
+                    text="Build" description="Run ym build"/>
             <action id="Yummy.Dev" class="com.ympkg.idea.actions.DevAction"
-                    text="Dev" description="Run ymc dev"/>
+                    text="Dev" description="Run ym dev"/>
             <action id="Yummy.Test" class="com.ympkg.idea.actions.TestAction"
-                    text="Test" description="Run ymc test"/>
+                    text="Test" description="Run ym test"/>
             <action id="Yummy.Refresh" class="com.ympkg.idea.actions.RefreshAction"
-                    text="Refresh Project" description="Re-run ymc idea to sync dependencies"/>
+                    text="Refresh Project" description="Re-run ym idea to sync dependencies"/>
         </group>
     </actions>
 </idea-plugin>

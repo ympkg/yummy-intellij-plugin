@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement;
 import java.io.File;
 
 /**
- * Auto-creates run configurations for ymc commands
+ * Auto-creates run configurations for ym commands
  * when a package.toml is present in the project.
  */
 public class YummyRunConfigurationProducer extends LazyRunConfigurationProducer<YummyRunConfiguration> {
@@ -31,7 +31,7 @@ public class YummyRunConfigurationProducer extends LazyRunConfigurationProducer<
         File packageToml = new File(basePath, "package.toml");
         if (!packageToml.exists()) return false;
 
-        configuration.setName("ymc build");
+        configuration.setName("ym build");
         configuration.command = "build";
         return true;
     }

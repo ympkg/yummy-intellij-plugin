@@ -17,12 +17,9 @@ echo "Packaging plugin..."
 
 mkdir -p "$DIST_DIR/$PLUGIN_NAME/lib"
 
-# Create plugin JAR
-cd "$OUT_DIR/classes"
-jar cf "../../$DIST_DIR/$PLUGIN_NAME/lib/$PLUGIN_NAME-$VERSION.jar" \
-    -C . . \
-    -C ../../src/main/resources .
-cd ../..
+# Create plugin JAR (ymc build already copies resources to out/classes/)
+jar cf "$DIST_DIR/$PLUGIN_NAME/lib/$PLUGIN_NAME-$VERSION.jar" \
+    -C "$OUT_DIR/classes" .
 
 # Create distributable ZIP
 cd "$DIST_DIR"
